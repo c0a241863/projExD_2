@@ -25,7 +25,7 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
     if rct.left < 0 or WIDTH < rct.right:#画面外だったら
         yoko = False
     #縦方向判定
-    if 0 < rct.top < HEIGHT < rct.bottom:#画面外だったら
+    if rct.top < 0 or HEIGHT < rct.bottom:#画面外だったら
         tate = False
     return yoko, tate
 
@@ -55,6 +55,10 @@ def main():
                 return
         screen.blit(bg_img, [0, 0]) 
 
+        if kk_rct.colliderect(bb_rct):
+            print("Game over")
+            return
+
         key_lst = pg.key.get_pressed()
         sum_mv = [0, 0]
         for key, mv in DELTA.items():
@@ -78,7 +82,7 @@ def main():
         yoko ,tate = check_bound(bb_rct)
         if not yoko:#左右どちらかにはみ出ていたら
             vx *= -1
-        if not tate:
+        if not tate:#上下どちらかにはみ出ていたら
             vy *= -1
         screen.blit(bb_img, bb_rct)#爆弾の描画
         pg.display.update()
