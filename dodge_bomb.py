@@ -7,10 +7,10 @@ import pygame as pg
 
 WIDTH, HEIGHT = 1100, 650
 DELTA = {#辞書
-    pg.K_UP:(0,-5),
-    pg.K_DOWN:(0,+5),
-    pg.K_LEFT:(-5,0),
-    pg.K_RIGHT:(+5,0),
+    pg.K_UP:(0, -5),
+    pg.K_DOWN:(0, +5),
+    pg.K_LEFT:(-5, 0),
+    pg.K_RIGHT:(+5, 0),
 }
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -52,6 +52,10 @@ def gameover(screen: pg.Surface) -> None:#Game over画面
     screen.blit(txt, [400, 300])
 
 
+#def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:#爆弾の拡大
+
+
+#def calc_orientation(org: pg.Rect, dst: pg.Rect,current_xy: tuple[float, float]) -> tuple[float, float]:#追従型爆弾
 
 
 
