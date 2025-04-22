@@ -30,6 +30,7 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
         tate = False
     return yoko, tate
 
+
 def gameover(screen: pg.Surface) -> None:#Game over画面
     
     bg_img = pg.Surface((WIDTH, HEIGHT))#黒背景
@@ -56,7 +57,6 @@ def gameover(screen: pg.Surface) -> None:#Game over画面
 
 
 #def calc_orientation(org: pg.Rect, dst: pg.Rect,current_xy: tuple[float, float]) -> tuple[float, float]:#追従型爆弾
-
 
 
 def main():
