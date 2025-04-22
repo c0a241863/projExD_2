@@ -1,6 +1,7 @@
 import os
 import random
 import sys
+import time
 import pygame as pg
 
 
@@ -29,6 +30,29 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
         tate = False
     return yoko, tate
 
+def gameover(screen: pg.Surface) -> None:#Game over画面
+    
+    bg_img = pg.Surface((WIDTH, HEIGHT))#黒背景
+    pg.draw.rect(bg_img, (0, 0, 0),(0, 0, WIDTH, HEIGHT))
+    bg_img.set_alpha(200)
+    screen.blit(bg_img, [0, 0])
+    #左こうかとん
+    kk_img2 = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 0.9)
+    kk_rct2 = kk_img2.get_rect()
+    kk_rct2.center = 360, 320
+    screen.blit(kk_img2, kk_rct2)
+    #右こうかとん
+    kk_img3 = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 0.9)
+    kk_rct3 = kk_img3.get_rect()
+    kk_rct3.center = 740, 320
+    screen.blit(kk_img3, kk_rct3)
+    #Game over文字
+    fonto = pg.font.Font(None, 80)
+    txt = fonto.render("Game over",True, (255, 255, 255))
+    screen.blit(txt, [400, 300])
+
+
+
 
 
 def main():
@@ -46,6 +70,7 @@ def main():
     bb_rct = bb_img.get_rect()
     bb_rct.center = random.randint(0,WIDTH),random.randint(0,HEIGHT)
     vx, vy = +5, +5
+    
 
     clock = pg.time.Clock()
     tmr = 0
@@ -56,7 +81,10 @@ def main():
         screen.blit(bg_img, [0, 0]) 
 
         if kk_rct.colliderect(bb_rct):
-            print("Game over")
+            #print("Game over")
+            gameover(screen)
+            pg.display.update()
+            time.sleep(5)
             return
 
         key_lst = pg.key.get_pressed()
